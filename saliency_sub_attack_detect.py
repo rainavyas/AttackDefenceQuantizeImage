@@ -154,7 +154,7 @@ def attack_imgs(X, labels, model, criterion, quantization, N, dataloader):
     # Apply substitution
     LARGEST = 256
     step_size = (LARGEST/quantization-1)
-    X_sub = X + (step_size*X_grads)
+    X_sub = X + (step_size*torch.sign(X_grads))
     X_attacked = dataloader.quantize(X_sub, quantization=quantization)
     return X_attacked
 
