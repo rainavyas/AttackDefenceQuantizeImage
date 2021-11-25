@@ -136,11 +136,13 @@ def attack_imgs(X, labels, model, criterion, quantization, N, dataloader):
     '''
 
     # Get saliency per pixel
+    X.requires_grad=True
     X.retain_grad()
     logits = model(X)
     loss = criterion(logits, labels)
     loss.backward()
     X_grads = X.grad
+    assert(X.grad is not None)
     X_saliencies = torch.abs(X_grads)
 
     # Create mask to keep top N saliencies
