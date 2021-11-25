@@ -183,7 +183,7 @@ if __name__ == '__main__':
         f.write(' '.join(sys.argv)+'\n')
 
     # Get device
-    if args.cpu_use == 'yes':
+    if args.cpu == 'yes':
         device = torch.device('cpu')
     else:
         device = get_default_device()
