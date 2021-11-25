@@ -267,5 +267,5 @@ if __name__ == '__main__':
         train(dl, detector, criterion, optimizer, epoch, device, args.LOG)
     
     # Save the trained detector model for identifying adversarial attacks
-    torch.save(detector.state_dict(), args.DETECTOR)
+    torch.save(detector.state_dict(), args.RESIDUE)
 
