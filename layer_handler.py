@@ -19,6 +19,6 @@ def get_vgg_layer(X, trained_model):
 
   Pass through one linear layer of classifier too
   '''
-  features = trained_model.features(X)
-  part_classifier = nn.Sequential(*list(trained_model._classifier.children())[:3])
+  features = trained_model.main_model.features(X)
+  part_classifier = nn.Sequential(*list(trained_model.main_model._classifier.children())[:3])
   return part_classifier(features.squeeze())
