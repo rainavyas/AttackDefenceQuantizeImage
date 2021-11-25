@@ -227,8 +227,10 @@ if __name__ == '__main__':
     img_attack = imgs_attacked[fool_inds]
 
     # Map to encoder embedding space
-    X_original = get_layer(imgs_original, model, args.ARCH)
-    X_attack = get_layer(img_attack, model, args.ARCH)
+    with torch.no_grad:
+        model.eval()
+        X_original = get_layer(imgs_original, model, args.ARCH)
+        X_attack = get_layer(img_attack, model, args.ARCH)
 
     # Train residue detector with successful attacks
     targets = torch.LongTensor([0]*len(X_original)+[1]*len(X_attack))
