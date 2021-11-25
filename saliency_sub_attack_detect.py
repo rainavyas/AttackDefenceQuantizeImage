@@ -172,8 +172,6 @@ if __name__ == '__main__':
     commandLineParser.add_argument('--num_points', type=int, default=2000, help="number of data points to attack")
 
     args = commandLineParser.parse_args()
-    out_file = args.OUT
-
     torch.manual_seed(args.seed)
 
     # Constant
@@ -238,7 +236,7 @@ if __name__ == '__main__':
     criterion = nn.CrossEntropyLoss().to(device)
 
     # Create file
-    with open(out_file, 'w') as f:
+    with open(args.LOG, 'w') as f:
         text = f' Detector trained using model {args.MODEL}, N {args.N}\n'
         f.write(text)
 
