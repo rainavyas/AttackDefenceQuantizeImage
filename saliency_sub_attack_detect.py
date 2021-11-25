@@ -166,6 +166,7 @@ def attack_imgs(X, labels, model, criterion, quantization, N, dataloader):
 
     # Re-quantize
     X_attacked = dataloader.quantize(torch.stack(X_attacks), quantization=quantization)
+    print(torch.sum(torch.abs(X_attacked-X)))
     return X_attacked
 
 if __name__ == '__main__':
