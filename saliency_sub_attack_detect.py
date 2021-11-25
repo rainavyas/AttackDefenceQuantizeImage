@@ -227,7 +227,7 @@ if __name__ == '__main__':
     img_attack = imgs_attacked[fool_inds]
 
     # Map to encoder embedding space
-    with torch.no_grad:
+    with torch.no_grad():
         model.eval()
         X_original = get_layer(imgs_original, model, args.ARCH)
         X_attack = get_layer(img_attack, model, args.ARCH)
