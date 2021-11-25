@@ -150,6 +150,7 @@ def attack_imgs(X, labels, model, criterion, quantization, N, dataloader):
     nth_largest, _ = torch.topk(torch.reshape(X_saliencies, (-1,)), N)
     nth_largest = nth_largest[0]
     X_grads[X_saliencies<nth_largest] = 0
+    print(nth_largest)
 
     # Apply substitution
     LARGEST = 256
