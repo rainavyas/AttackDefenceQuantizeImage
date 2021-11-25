@@ -146,18 +146,26 @@ def attack_imgs(X, labels, model, criterion, quantization, N, dataloader):
     assert(X.grad is not None)
     X_saliencies = torch.abs(X_grads)
 
-    # Create mask to keep top N saliencies
-    nth_largest, _ = torch.topk(torch.reshape(X_saliencies, (-1,)), N)
-    nth_largest = nth_largest[0]
-    X_grads[X_saliencies<nth_largest] = 0
-    print(nth_largest)
-
-    # Apply substitution
+    X_attacks= []
     LARGEST = 256
     step_size = (LARGEST/quantization-1)
-    X_sub = X + (step_size*torch.sign(X_grads))
-    X_attacked = dataloader.quantize(X_sub, quantization=quantization)
-    return X_attacked
+
+    for j in range(X.size(0)):
+        curr_sal = X_saliencies[j]
+        curr_X = X[j]
+        curr_grad = X_grads[j]
+
+        # Create mask to keep top N saliencies
+        nth_largest, _ = torch.topk(torch.reshape(curr_sal, (-1,)), N)
+        nth_largest = nth_largest[0]
+        curr_grad[curr_sal<nth_largest] = 0
+
+        # Apply substitution
+        X_sub = curr_X + (step_size*torch.sign(curr_grad))
+        X_attacked = dataloader.quantize(X_sub, quantization=quantization)
+        X_attacks.append(X_attacked)
+
+    return torch.stack(X_attacks)
 
 if __name__ == '__main__':
      # Get command line arguments
