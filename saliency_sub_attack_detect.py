@@ -176,6 +176,7 @@ if __name__ == '__main__':
 
     # Constant
     SIZE = 32
+    NUM_CLASSES = 100
 
     if not os.path.isdir('CMDs'):
         os.mkdir('CMDs')
@@ -189,7 +190,7 @@ if __name__ == '__main__':
         device = get_default_device()
     
     # Load trained model
-    model = Classifier(args.ARCH, args.num_classes, device, size=SIZE)
+    model = Classifier(args.ARCH, NUM_CLASSES, device, size=SIZE)
     model.load_state_dict(torch.load(args.MODEL, map_location=torch.device('cpu')))
     model.to(device)
     model.eval()
