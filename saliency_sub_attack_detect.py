@@ -34,7 +34,7 @@ def get_fooling_rate(X, X_attack, model, labels):
 
     for j, (o, a, l) in enumerate(zip(pred_original, pred_attack, labels)):
         if o != l:
-            next
+            continue
         total_count += 1
         if a != o:
             fool_inds.append(j)
