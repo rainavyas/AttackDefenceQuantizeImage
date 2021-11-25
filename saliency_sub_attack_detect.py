@@ -42,6 +42,7 @@ def get_fooling_rate(X, X_attack, model, labels):
     fool_rate = len(fool_inds)/total_count
     print("Total Count: ", total_count)
     print("Fool Rate: ", fool_rate)
+    assert(len(fool_inds)!=0)
     return fool_rate, fool_inds
 
 
@@ -211,7 +212,7 @@ if __name__ == '__main__':
     print("Attacked images")
 
     # Evaluate impact of attack - keep successful attacks only
-    fool_inds, _ = get_fooling_rate(imgs, imgs_attacked, model, labels)
+    _, fool_inds = get_fooling_rate(imgs, imgs_attacked, model, labels)
     imgs_original = imgs[fool_inds]
     img_attack = imgs_attacked[fool_inds]
 
