@@ -163,7 +163,7 @@ def attack_imgs(X, labels, model, criterion, quantization, N, dataloader):
         # Apply substitution
         X_sub = curr_X + (step_size*torch.sign(curr_grad))
         X_attacked = dataloader.quantize(X_sub, quantization=quantization)
-        print(torch.sum(torch.abs(curr_X-X_attacked)))
+        print(torch.sum(torch.abs(X_sub-X_attacked)))
         X_attacks.append(X_attacked)
 
     return torch.stack(X_attacks)
