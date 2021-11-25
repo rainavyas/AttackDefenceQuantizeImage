@@ -161,6 +161,7 @@ def attack_imgs(X, labels, model, criterion, quantization, N, dataloader):
         curr_grad[curr_sal<nth_largest] = 0
 
         # Apply substitution
+        print(step_size*torch.sign(curr_grad))
         X_sub = curr_X + (step_size*torch.sign(curr_grad))
         X_attacked = dataloader.quantize(X_sub, quantization=quantization)
         X_attacks.append(X_attacked)
