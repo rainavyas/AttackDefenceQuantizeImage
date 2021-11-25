@@ -38,6 +38,7 @@ def get_fooling_rate(X, X_attack, model, labels):
         total_count += 1
         if a != o:
             fool_inds.append(j)
+        print(o, a)
     
     fool_rate = len(fool_inds)/total_count
     print("Total Count: ", total_count)
@@ -209,8 +210,7 @@ if __name__ == '__main__':
 
     # Load the data as tensors and quantize
     dataloader = DataTensorLoader()
-    imgs, labels = dataloader.get_test()
-    # imgs, labels = dataloader.get_train()
+    imgs, labels = dataloader.get_train()
     imgs = imgs[:args.num_points]
     labels = labels[:args.num_points]
     imgs = dataloader.quantize(imgs, quantization=args.quantization)
