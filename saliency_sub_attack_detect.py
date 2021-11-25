@@ -158,10 +158,10 @@ def attack_imgs(X, labels, model, criterion, quantization, N, dataloader):
         # Create mask to keep top N saliencies
         nth_largest, _ = torch.topk(torch.reshape(curr_sal, (-1,)), N)
         nth_largest = nth_largest[0]
+        print(nth_largest)
         curr_grad[curr_sal<nth_largest] = 0
 
         # Apply substitution
-        print(step_size*torch.sign(curr_grad))
         X_sub = curr_X + (step_size*torch.sign(curr_grad))
         X_attacked = dataloader.quantize(X_sub, quantization=quantization)
         X_attacks.append(X_attacked)
