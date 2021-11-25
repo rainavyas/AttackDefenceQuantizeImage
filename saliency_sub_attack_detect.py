@@ -38,7 +38,6 @@ def get_fooling_rate(X, X_attack, model, labels):
         total_count += 1
         if a != o:
             fool_inds.append(j)
-        print(o, a)
     
     fool_rate = len(fool_inds)/total_count
     print("Total Count: ", total_count)
@@ -164,6 +163,7 @@ def attack_imgs(X, labels, model, criterion, quantization, N, dataloader):
         # Apply substitution
         X_sub = curr_X + (step_size*torch.sign(curr_grad))
         X_attacked = dataloader.quantize(X_sub, quantization=quantization)
+        print(torch.sum(torch.abs(curr_X-X_attacked)))
         X_attacks.append(X_attacked)
 
     return torch.stack(X_attacks)
