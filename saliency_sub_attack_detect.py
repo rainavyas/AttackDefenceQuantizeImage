@@ -159,6 +159,7 @@ def attack_imgs(X, labels, model, criterion, quantization, N, dataloader):
         nth_largest, _ = torch.topk(torch.reshape(curr_sal, (-1,)), N)
         nth_largest = nth_largest[-1]
         curr_grad[curr_sal<nth_largest] = 0
+        print(torch.sum(torch.abs(torch.sign(curr_grad))))
 
         # Apply substitution
         X_sub = curr_X + (step_size*torch.sign(curr_grad))
