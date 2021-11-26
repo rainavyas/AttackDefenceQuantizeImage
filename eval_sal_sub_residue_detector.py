@@ -90,7 +90,7 @@ if __name__ == '__main__':
     
     print("Got prediction probs")
     # get precision recall values and highest F1 score (with associated prec and rec)
-    precision, recall, _ = precision_recall_curve(labels, adv_probs)
+    precision, recall, _ = precision_recall_curve(targets, adv_probs)
     best_precision, best_recall, best_f1 =  get_best_f_score(precision, recall)
     print(f'Precision: {best_precision}\t Recall: {best_recall}\t F1: {best_f1}')
 
