@@ -20,7 +20,6 @@ from sklearn.metrics import precision_recall_curve
 
 def calculate_per_class_dist(vector, class_mean, inv_cov):
     diff = vector - class_mean
-    print(diff)
     half = np.matmul(inv_cov, diff)
     return np.dot(diff, half)
 
