@@ -25,6 +25,8 @@ if __name__ == '__main__':
     commandLineParser.add_argument('ARCH', type=str, help='vgg16, densenet121, resnet18, etc.')
     commandLineParser.add_argument('MODEL_BASE', type=str, help='Specify trained models base name')
     commandLineParser.add_argument('--num_seeds', type=int, default=5, help="Specify number of model seeds to evaluate with")
+    commandLineParser.add_argument('--quantization', type=int, default=256, help="Specify quantization")
+    commandLineParser.add_argument('--N', type=int, default=600, help="Specify number of pixels to substitute")
     commandLineParser.add_argument('--num_points', type=int, default=2000, help="number of data points to attack")
     args = commandLineParser.parse_args()
 
