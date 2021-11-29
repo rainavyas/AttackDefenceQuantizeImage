@@ -88,7 +88,7 @@ if __name__ == '__main__':
     adv_uncertainties = ensemble_uncertainties_classification(attacked_probs)
 
     # For each uncertainty measure report F1-score
-    labels = [0]*len(original_probs) + [1]*len(attacked_probs)
+    labels = [0]*len(original_uncertainties) + [1]*len(adv_uncertainties)
 
     for measure in original_uncertainties.keys():
         original = original_uncertainties[measure]
