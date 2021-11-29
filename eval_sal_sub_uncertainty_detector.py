@@ -30,7 +30,7 @@ if __name__ == '__main__':
     commandLineParser.add_argument('--num_points', type=int, default=2000, help="number of data points to attack")
     args = commandLineParser.parse_args()
 
-# Constant
+    # Constant
     SIZE = 32
     NUM_CLASSES = 100
     device = torch.device('cpu')
